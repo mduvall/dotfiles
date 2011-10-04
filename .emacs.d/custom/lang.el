@@ -1,6 +1,9 @@
 ;; Python hook
 (add-to-list 'auto-mode-alist '("\\.mako$" . html-mode))
 
+;; Sass hooks
+(add-to-list 'auto-mode-alist '("\\.scss$" . sass-mode))
+
 ;; Javascript helpers
 (add-to-list 'load-path (concat package-user-dir "/js2-mode"))
 (setq js-indent-level 2)
@@ -78,13 +81,10 @@
 (setq cssm-mirror-mode t)
 
 (defun mtd-html-mode-hook ()
-  (setq tab-width 0)
-  (setq indent-tabs-mode t)
+  (setq tab-width 2)
+  (setq indent-tabs-mode nil)
   (define-key html-mode-map (kbd "C->") 'sgml-close-tag))
 (add-hook 'html-mode-hook 'mtd-html-mode-hook)
 
-
-;; git
-(require 'magit)
 
 ;; global edits

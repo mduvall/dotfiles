@@ -1,17 +1,21 @@
 ;; All the shit that screams in terminal
 (when window-system
   (progn (tool-bar-mode -1)
-		 (toggle-scroll-bar -1))
+		 (toggle-scroll-bar -1)))
+(menu-bar-mode -1)
   (add-to-list 'load-path "~/workspace/load/color-theme-6.6.0/")
+
   (load-file "~/.emacs.d/themes/color-theme-wombat.el")
   (require 'color-theme)
   (require 'color-theme-tangotango)
   (require 'color-theme-tango)
   (require 'color-theme-wombat)
   (require 'color-theme-solarized)
+  (require 'color-theme-molokai)
   (setq color-theme-is-global t)
-  (set-fringe-mode '(2 . 0))
-  (color-theme-solarized-dark))
+;;  (set-fringe-mode '(2 . 0))
+;;  (color-theme-wombat))
+  (color-theme-solarized-light)
 
 
 ;; Window management cuteness
@@ -30,3 +34,4 @@
 (delete-selection-mode t)
 (require 'textmate)
 (textmate-mode)
+(setq tab-width 2)
