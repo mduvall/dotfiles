@@ -28,8 +28,8 @@
 ;;; Code:
 (require 'color-theme)
 
-(defvar wombat-fg "#f6f3e8")
-(defvar wombat-bg "#2e3434")
+(defvar wombat-fg "#cccccc")
+(defvar wombat-bg "#242424")
 (defvar wombat-green "#95e454")
 (defvar wombat-green+1 "#cae682")
 (defvar wombat-green+2 "#4BC98A")
@@ -65,17 +65,17 @@
 
      ;; Font Lock
      (font-lock-builtin-face ((t (:foreground ,wombat-blue))))
-     (font-lock-comment-delimiter-face ((t (::foreground ,wombat-gray+1))))
-     (font-lock-comment-face ((t (:foreground ,wombat-gray+1))))
+     (font-lock-comment-delimiter-face ((t (:italic t :slant italic :foreground ,wombat-gray+1))))
+     (font-lock-comment-face ((t (:italic t :slant italic :foreground ,wombat-gray+1))))
      (font-lock-constant-face ((t (:foreground ,wombat-red-1))))
      (font-lock-doc-face ((t (:foreground ,wombat-gray+1))))
-     (font-lock-function-name-face ((t (:foreground ,wombat-purple-1 :bold t))))
+     (font-lock-function-name-face ((t (:foreground ,wombat-purple-1 :bold t :italic t))))
      (font-lock-keyword-face ((t (:foreground ,wombat-blue))))
      (font-lock-negation-char-face ((t (:foreground ,wombat-red))))
      (font-lock-preprocessor-face ((t (:foreground ,wombat-red-1))))
      (font-lock-regexp-grouping-backslash ((t (:bold t :weight bold))))
      (font-lock-regexp-grouping-construct ((t (:bold t ,wombat-green))))
-     (font-lock-string-face ((t (:foreground ,wombat-green))))
+     (font-lock-string-face ((t (:italic t :foreground ,wombat-green))))
      (font-lock-type-face ((t (:foreground ,wombat-green+1))))
      (font-lock-variable-name-face ((t (:foreground ,wombat-blue))))
      (font-lock-warning-face ((t (:bold t :foreground ,wombat-red))))
@@ -93,7 +93,7 @@
 
 
      ;; Highlighting
-     (lazy-highlight ((t (:background "yellow" :foreground "black"))))
+     (lazy-highlight ((t (:italic t :background "yellow" :foreground "black"))))
      (highlight ((t (:background ,wombat-gray-1))))
      (highlight-changes-delete-face ((t (:foreground "red" :underline t))))
      (highlight-changes-face ((t (:foreground "red"))))
