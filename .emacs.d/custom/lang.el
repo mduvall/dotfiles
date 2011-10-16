@@ -12,6 +12,9 @@
 (add-to-list 'auto-mode-alist '("\\.js$" . espresso-mode))
 (add-to-list 'auto-mode-alist '("\\.json$" . espresso-mode))
 
+;; Octave hook
+(add-to-list 'auto-mode-alist '("\\.m$" . octave-mode))
+
 ;; Scala hook
 (require 'scala-mode-auto)
 (require 'font-lock)
