@@ -31,6 +31,9 @@
 (autoload 'scala-mode "scala-mode" nil t)
 
 
+;; Markdown hook
+(setq auto-mode-alist (cons '("\\.text", markdown-mode) auto-mode-alist))
+
 ;; Ruby hook
 (autoload 'ruby-mode "ruby-mode" nil t)
 (autoload 'run-ruby "inf-ruby")
