@@ -10,3 +10,5 @@
 (global-set-key (kbd "C-x C-k") 'kill-region)
 (global-set-key (kbd "C-x M-m") 'ansi-term)
 (global-set-key (kbd "RET") 'reindent-then-newline-and-indent)
+
+(eval-after-load 'sass-mode '(define-key sass-mode-map (kbd "RET") 'newline))
