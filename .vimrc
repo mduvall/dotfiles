@@ -1,7 +1,20 @@
+"Always reread vim :-)
+autocmd! bufwritepost vimrc source ~/.vimrc
 
+"FUCK BACKUP SHIT
 set nobackup
 set nowb
 set noswapfile
+
+"Define the font
+"
+set guifont=Inconsolata:h14
+set linespace=-1
+
+"Remove toolbar and scrollbar
+set guioptions-=T
+set guioptions+=LlRrb
+set guioptions-=LlRrb
 
 "Moving between windows
 map <C-j> <C-W>j
@@ -62,17 +75,9 @@ noremap   <Down>   <NOP>
 noremap   <Left>   :bn<cr>
 noremap   <Right>  :bp<cr>
 
-map <F5> :call CompileRunGcc()<CR>
-func! CompileRunGcc()
-    exec "w"
-    exec "!gcc % -o %<"
-    exec "! ./%<"
-endfunc
-
-map <F6> :call InterpretPython()<CR>
-func! InterpretPython()
-    exec "w"
-    exec "!python %"
-endfunc
-
+set background=dark
+"let g:solarized_termcolors=256
+"let g:solarized_visibility="high"
+"let g:solarized_contrast="high"
+colorscheme solarized
 
