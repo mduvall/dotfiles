@@ -81,3 +81,8 @@ set background=dark
 "let g:solarized_contrast="high"
 colorscheme solarized
 
+set nolist
+let g:ctrlp_custom_ignore = '\coverage$\|\vendor$'
+set ttymouse=xterm2
+set clipboard=unnamed
+
