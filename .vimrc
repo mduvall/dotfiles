@@ -86,3 +86,9 @@ let g:ctrlp_custom_ignore = '\coverage$\|\vendor$'
 set ttymouse=xterm2
 set clipboard=unnamed
 
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+Bundle 'gmarik/vundle'
+Bundle 'Lokaltog/vim-powerline'
+let g:Powerline_symbols = 'fancy'
+
