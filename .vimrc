@@ -37,8 +37,6 @@ set expandtab
 set shiftround
 set nojoinspaces
 set nocompatible
-set tabstop=4 shiftwidth=4
-set autoread
 
 "Set line jumps to 3 instead of 1
 nnoremap <C-e> 3<C-e>
@@ -75,16 +73,13 @@ noremap   <Down>   <NOP>
 noremap   <Left>   :bn<cr>
 noremap   <Right>  :bp<cr>
 
-set background=dark
-"let g:solarized_termcolors=256
-"let g:solarized_visibility="high"
-"let g:solarized_contrast="high"
+set background=light
 colorscheme solarized
 
 set nolist
-let g:ctrlp_custom_ignore = '\coverage$\|\vendor$'
-set ttymouse=xterm2
-set clipboard=unnamed
+
+"let g:ctrlp_custom_ignore = '\coverage$\|\vendor$'
+set wildignore+=*/coverage/*\,*/vendor/*'
 
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
@@ -92,3 +87,17 @@ Bundle 'gmarik/vundle'
 Bundle 'Lokaltog/vim-powerline'
 let g:Powerline_symbols = 'fancy'
 
+set ttymouse=xterm2
+set clipboard=unnamed
+
+let g:ctrlp_max_files = 10000
+
+" Optimize file searching
+if has("unix")
+    let g:ctrlp_user_command = {
+                \   'types': {
+                \       1: ['.git/', 'cd %s && git ls-files']
+                \   },
+                \   'fallback': 'find %s -type f | head -' . g:ctrlp_max_files
+                \ }
+endif
