@@ -73,8 +73,6 @@ noremap   <Down>   <NOP>
 noremap   <Left>   :bn<cr>
 noremap   <Right>  :bp<cr>
 
-set background=light
-colorscheme solarized
 
 set nolist
 
