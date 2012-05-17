@@ -73,7 +73,7 @@ noremap   <Down>   <NOP>
 noremap   <Left>   :bn<cr>
 noremap   <Right>  :bp<cr>
 
-
+colorscheme Tomorrow-Night
 set nolist
 
 "let g:ctrlp_custom_ignore = '\coverage$\|\vendor$'
