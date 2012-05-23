@@ -1,6 +1,24 @@
+" Bundle install plugins
+filetype off
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+Bundle 'gmarik/vundle'
+Bundle 'Lokaltog/vim-powerline'
+Bundle 'kien/ctrlp.vim'
+Bundle 'mileszs/ack.vim'
+Bundle 'scrooloose/nerdtree'
+Bundle 'ervandew/supertab'
+Bundle 'scrooloose/syntastic'
+Bundle 'kchmck/vim-coffee-script'
+let g:Powerline_symbols = 'fancy'
+
+filetype plugin indent on
+syntax on
+
 set nobackup
 set nowb
 set noswapfile
+set scrolloff=3
 
 "Define the font
 "
@@ -26,9 +44,6 @@ set showmatch
 set incsearch
 
 "Deal with file stuff
-filetype on
-filetype plugin on
-filetype indent on
 set expandtab
 set shiftround
 set nojoinspaces
@@ -55,9 +70,6 @@ set backspace=indent,eol,start
 set mouse=a
 set visualbell
 
-"Turn syntax highlighting on
-syntax on
-set syn=auto
 
 "NOOB PRACTICE OK THANKS
 inoremap  <Up>     <NOP>
@@ -75,16 +87,6 @@ set nolist
 "let g:ctrlp_custom_ignore = '\coverage$\|\vendor$'
 set wildignore+=*/coverage/*\,*/vendor/*'
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-Bundle 'gmarik/vundle'
-Bundle 'Lokaltog/vim-powerline'
-Bundle 'kien/ctrlp.vim'
-Bundle 'mileszs/ack.vim'
-Bundle 'scrooloose/nerdtree'
-Bundle 'ervandew/supertab'
-Bundle 'scrooloose/syntastic'
-let g:Powerline_symbols = 'fancy'
 
 set ttymouse=xterm2
 set clipboard+=unnamed
