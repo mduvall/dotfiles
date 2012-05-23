@@ -1,7 +1,3 @@
-"Always reread vim :-)
-autocmd! bufwritepost vimrc source ~/.vimrc
-
-"FUCK BACKUP SHIT
 set nobackup
 set nowb
 set noswapfile
@@ -50,7 +46,7 @@ set statusline=Line:\ \ %l/%L:%c\ \ \ %F%m%r%h\ %w
 :set hidden
 
 "Remember a longer 
-set history=1000
+set history=100
 
 "Change backspacing to go to previous line
 set backspace=indent,eol,start
@@ -83,10 +79,15 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 Bundle 'gmarik/vundle'
 Bundle 'Lokaltog/vim-powerline'
+Bundle 'kien/ctrlp.vim'
+Bundle 'mileszs/ack.vim'
+Bundle 'scrooloose/nerdtree'
+Bundle 'ervandew/supertab'
+Bundle 'scrooloose/syntastic'
 let g:Powerline_symbols = 'fancy'
 
 set ttymouse=xterm2
-set clipboard=unnamed
+set clipboard+=unnamed
 
 let g:ctrlp_max_files = 10000
 
