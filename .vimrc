@@ -109,3 +109,10 @@ let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
 
 autocmd vimenter * NERDTree
+
+let mapleader = "\\"
+
+map <Leader>c :TMiniBufExplorer<cr>
+let g:miniBufExplMaxSize = 0
+
+let g:syntastic_quiet_warnings = 1
