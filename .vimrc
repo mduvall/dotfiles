@@ -62,7 +62,7 @@ noremap   <Left>   :bn<cr>
 noremap   <Right>  :bp<cr>
 
 set background=dark
-colorscheme Tomorrow-Night
+colorscheme molokai
 set nolist
 
 set wildignore+=*/coverage/*\,*/vendor/*'
@@ -153,3 +153,4 @@ if has("gui_running")
 	set linespace=1
 endif
 
+set relativenumber
