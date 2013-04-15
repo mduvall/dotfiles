@@ -6,10 +6,13 @@ Bundle 'gmarik/vundle'
 Bundle 'kien/ctrlp.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/nerdcommenter'
-Bundle 'scrooloose/syntastic'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'mileszs/ack.vim'
+Bundle 'vim-scripts/taglist.vim'
+" Bundle 'Valloric/YouCompleteMe'
+Bundle 'juvenn/mustache.vim'
+Bundle 'majutsushi/tagbar'
 
 let g:Powerline_symbols = 'fancy'
 let g:EasyMotion_leader_key = '<leader><leader>'
@@ -34,7 +37,10 @@ set incsearch
 set shiftround
 set nojoinspaces
 set nocompatible
-set tabstop=4 shiftwidth=4
+
+set tabstop=2 shiftwidth=2
+au BufNewFile,BufRead,BufEnter /box/www/current/* setlocal tabstop=4 shiftwidth=4
+au BufWritePost /Users/mduvall/workspace/trippinballs/*.hbs silent !grunt
 
 "Set line jumps to 3 instead of 1
 nnoremap <C-e> 3<C-e>
@@ -67,11 +73,8 @@ set nolist
 
 set wildignore+=*/coverage/*\,*/vendor/*'
 
-" set ttymouse=xterm2
 set clipboard=unnamed
 
-" Ctrlp optimization
-let g:ctrlp_max_files = 1000
 " Optimize file searching
 if has("unix")
     let g:ctrlp_user_command = {
@@ -81,7 +84,6 @@ if has("unix")
                 \   'fallback': 'find %s -type f | head -' . g:ctrlp_max_files
                 \ }
 endif
-
 
 au BufNewFile,BufRead *.tmpl setf html
 
@@ -113,7 +115,7 @@ vnoremap <silent> # :<C-U>
 
 set foldenable
 set foldmethod=indent
-set foldlevel=10
+set foldlevel=100
 set laststatus=2
 
 let g:miniBufExplMapWindowNavVim = 1
@@ -121,13 +123,10 @@ let g:miniBufExplMapWindowNavArrows = 1
 let g:miniBufExplMapCTabSwitchBufs = 1
 let g:miniBufExplModSelTarget = 1 
 let g:miniBufExplMaxSize = 0
-let g:syntastic_quiet_warnings = 1
 
-au BufWritePost /box/www/current/* !scp % mduvall.dev.box.net:/box/www/current/%
+au BufWritePost /box/www/current/* silent !scp % mduvall.dev.box.net:/box/www/current/%
 
-set notimeout
-set ttimeout
-set timeoutlen=50
+command Sync exec ":!cd /box/www/ && ./runsync.command"
 
 function! RunTest()
 	:silent !clear
@@ -146,11 +145,14 @@ endfunction
 :noremap <F2> :call RunTest()<cr>
 
 if has("gui_running")
-    set guifont=Ubuntu\ Mono:h14
+	set guifont=Inconsolata:h14
 	set guioptions-=T
 	set guioptions+=LlRrb
 	set guioptions-=LlRrb
 	set linespace=1
 endif
 
-set relativenumber
+hi MBENormal guifg=#808080 guibg=fg
+
+set wildmenu
+set wildmode=longest:full,full
