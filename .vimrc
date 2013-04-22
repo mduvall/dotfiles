@@ -122,6 +122,7 @@ let g:miniBufExplMapWindowNavVim = 1
 let g:miniBufExplMapWindowNavArrows = 1
 let g:miniBufExplMapCTabSwitchBufs = 1
 let g:miniBufExplModSelTarget = 1 
+let g:miniBufExplCheckDupeBufs = 0
 let g:miniBufExplMaxSize = 0
 
 au BufWritePost /box/www/current/* silent !scp % mduvall.dev.box.net:/box/www/current/%
