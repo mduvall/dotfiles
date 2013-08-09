@@ -8,12 +8,6 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'mileszs/ack.vim'
-Bundle 'vim-scripts/taglist.vim'
-Bundle 'juvenn/mustache.vim'
-Bundle 'fholgado/minibufexpl.vim'
-Bundle 'mattn/zencoding-vim'
-Bundle 'airblade/vim-gitgutter'
-Bundle 'tpope/vim-markdown'
 Bundle 'scrooloose/syntastic'
 Bundle 'godlygeek/tabular'
 Bundle 'Lokaltog/vim-powerline'
@@ -25,7 +19,6 @@ set nowb
 set noswapfile
 set scrolloff=3
 set linespace=-1
-set number
 set showmatch
 set incsearch
 set hlsearch
@@ -66,6 +59,10 @@ noremap   <Left>   :bp<cr>
 noremap   <Right>  :bn<cr>
 noremap <F1> :set hlsearch! hlsearch?<CR>
 inoremap jj <Esc>
+noremap <C-J> <C-W>j
+noremap <C-K> <C-W>k
+noremap <C-H> <C-W>h
+noremap <C-L> <C-W>l
 vnoremap <silent> * :<C-U>
             \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
             \gvy/<C-R><C-R>=substitute(
@@ -78,6 +75,8 @@ vnoremap <silent> # :<C-U>
             \gV:call setreg('"', old_reg, old_regtype)<CR>
 cmap w!! %!sudo tee > /dev/null %
 nmap <leader>cd :cd %:h<CR>
+nmap \t :set expandtab tabstop=4 shiftwidth=4 softtabstop=4<CR>
+nmap \m :set expandtab tabstop=2 shiftwidth=2 softtabstop=2<CR>
 
 
 let g:miniBufExplMapWindowNavVim = 1
@@ -91,7 +90,7 @@ let g:Powerline_symbols = 'fancy'
 let g:EasyMotion_leader_key = '<leader><leader>'
 
 if has("gui_running")
-    set guifont=Monaco:h14
+    set guifont=Inconsolata:h14
     set guioptions-=T
     set guioptions+=LlRrb
     set guioptions-=LlRrb
@@ -101,6 +100,3 @@ endif
 autocmd BufWritePre *.go Fmt
 autocmd BufWinEnter * set foldlevel=999999
 autocmd BufWritePre * :%s/\s\+$//e
-
-colorscheme molokai
-hi MBENormal guifg=#808080 guibg=fg
