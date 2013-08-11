@@ -50,6 +50,8 @@ filetype plugin indent on
 filetype indent on
 syntax on
 
+colorscheme molokai
+
 let mapleader = "\\"
 map <Leader>c :TMiniBufExplorer<cr>
 
