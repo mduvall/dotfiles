@@ -11,6 +11,7 @@ Bundle 'mileszs/ack.vim'
 Bundle 'scrooloose/syntastic'
 Bundle 'godlygeek/tabular'
 Bundle 'Lokaltog/vim-powerline'
+Bundle 'tpope/vim-fugitive'
 
 set runtimepath+=$GOROOT/misc/vim
 
@@ -32,7 +33,7 @@ set shiftwidth=4
 set backspace=indent,eol,start
 set mouse=a
 set visualbell
-set wildignore+=*/coverage/*\,*/vendor/*'
+set wildignore+=*/coverage/*\,*/vendor/*',*/node_modules/**
 set clipboard=unnamed
 set nowrap
 set ttyfast
@@ -45,15 +46,16 @@ set background=dark
 set cul
 set hidden
 set laststatus=2
+set autoread
+set number
+
+colorscheme solarized
 
 filetype plugin indent on
 filetype indent on
 syntax on
 
-colorscheme molokai
-
 let mapleader = "\\"
-map <Leader>c :TMiniBufExplorer<cr>
 
 nnoremap <C-e> 3<C-e>
 inoremap <C-y> 3<C-y>
@@ -79,6 +81,10 @@ cmap w!! %!sudo tee > /dev/null %
 nmap <leader>cd :cd %:h<CR>
 nmap \t :set expandtab tabstop=4 shiftwidth=4 softtabstop=4<CR>
 nmap \m :set expandtab tabstop=2 shiftwidth=2 softtabstop=2<CR>
+nmap <leader>d :NERDTreeToggle<CR>
+nmap <leader>r :CtrlPBuffer<CR>
+nmap <leader>T :CtrlPClearCache<CR>:CtrlP<CR>
+nmap <leader>] :TagbarToggle<CR>
 
 
 let g:miniBufExplMapWindowNavVim = 1
