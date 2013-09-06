@@ -98,7 +98,7 @@ let g:Powerline_symbols = 'fancy'
 let g:EasyMotion_leader_key = '<leader><leader>'
 
 if has("gui_running")
-    set guifont=Inconsolata:h14
+    set guifont=Monaco:h12
     set guioptions-=T
     set guioptions+=LlRrb
     set guioptions-=LlRrb
