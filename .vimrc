@@ -12,6 +12,7 @@ Bundle 'scrooloose/syntastic'
 Bundle 'godlygeek/tabular'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'tpope/vim-fugitive'
+Bundle 'sjl/badwolf'
 
 set runtimepath+=$GOROOT/misc/vim
 
@@ -48,17 +49,21 @@ set hidden
 set laststatus=2
 set autoread
 set number
+set background=dark
 
-colorscheme solarized
+let g:badwolf_tabline = 2
+let g:badwolf_html_link_underline = 0
+colorscheme badwolf
 
 filetype plugin indent on
 filetype indent on
 syntax on
 
-let mapleader = "\\"
+let mapleader = ","
 
 nnoremap <C-e> 3<C-e>
 inoremap <C-y> 3<C-y>
+nnoremap D d$
 noremap   <Left>   :bp<cr>
 noremap   <Right>  :bn<cr>
 noremap <F1> :set hlsearch! hlsearch?<CR>
@@ -85,26 +90,27 @@ nmap <leader>d :NERDTreeToggle<CR>
 nmap <leader>r :CtrlPBuffer<CR>
 nmap <leader>T :CtrlPClearCache<CR>:CtrlP<CR>
 nmap <leader>] :TagbarToggle<CR>
-
-
-let g:miniBufExplMapWindowNavVim = 1
-let g:miniBufExplMapWindowNavArrows = 1
-let g:miniBufExplMapCTabSwitchBufs = 1
-let g:miniBufExplModSelTarget = 1
-let g:miniBufExplCheckDupeBufs = 0
-let g:miniBufExplMaxSize = 0
+nmap <leader>a :Ack
+nnoremap * *<c-o>
+nnoremap n nzzzv
+nnoremap N Nzzzv
+noremap H ^
+noremap L $
 
 let g:Powerline_symbols = 'fancy'
 let g:EasyMotion_leader_key = '<leader><leader>'
 
 if has("gui_running")
-    set guifont=Monaco:h12
+    set guifont=Ubuntu\ Mono:h14
     set guioptions-=T
     set guioptions+=LlRrb
     set guioptions-=LlRrb
     set linespace=1
 endif
 
-autocmd BufWritePre *.go Fmt
-autocmd BufWinEnter * set foldlevel=999999
-autocmd BufWritePre * :%s/\s\+$//e
+au BufWritePre *.go Fmt
+au BufWinEnter * set foldlevel=999999
+au BufWritePre * :%s/\s\+$//e
+au FocusLost * :silent! wall
+au VimResized * :wincmd =
+
