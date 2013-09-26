@@ -106,6 +106,7 @@ if has("gui_running")
     set guioptions+=LlRrb
     set guioptions-=LlRrb
     set linespace=1
+    set guicursor=
 endif
 
 au BufWritePre *.go Fmt
