@@ -10,9 +10,9 @@ Bundle 'Lokaltog/vim-easymotion'
 Bundle 'mileszs/ack.vim'
 Bundle 'scrooloose/syntastic'
 Bundle 'godlygeek/tabular'
-Bundle 'Lokaltog/vim-powerline'
 Bundle 'tpope/vim-fugitive'
 Bundle 'sjl/badwolf'
+Bundle 'bling/vim-airline'
 
 set runtimepath+=$GOROOT/misc/vim
 
@@ -99,9 +99,11 @@ noremap L $
 
 let g:Powerline_symbols = 'fancy'
 let g:EasyMotion_leader_key = '<leader><leader>'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts=1
 
 if has("gui_running")
-    set guifont=Ubuntu\ Mono:h14
+    set guifont=Source\ Code\ Pro\ For\ Powerline:h14
     set guioptions-=T
     set guioptions+=LlRrb
     set guioptions-=LlRrb
