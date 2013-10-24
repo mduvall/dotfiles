@@ -99,6 +99,18 @@ noremap L $
 
 let g:Powerline_symbols = 'fancy'
 let g:EasyMotion_leader_key = '<leader><leader>'
+let g:syntastic_javascript_checkers = ['jshint']
+let g:ctrlp_max_files = 10000
+let g:ctrlp_user_command = {
+        \ 'types': {
+            \ 1: ['.git', 'cd %s && git ls-files . -co --exclude-standard'],
+            \ 2: ['.hg', 'hg --cwd %s locate -I .'],
+        \ },
+        \ 'fallback': 'find %s -type f | head -' . g:ctrlp_max_files
+    \ }
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  'cmpl'
+  \ }
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts=1
 
