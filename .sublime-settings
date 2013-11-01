@@ -1,0 +1,23 @@
+{
+	"color_scheme": "Packages/Tomorrow Color Schemes/Tomorrow-Night.tmTheme",
+	"font_face": "Monaco",
+	"font_options":
+	[
+	],
+	"font_size": 14.0,
+	"git_command": "/usr/local/git/bin/git",
+	"highlight_line": true,
+	"ignored_packages":
+	[
+		"Vintage"
+	],
+	"rulers":
+	[
+		80
+	],
+	"soda_classic_tabs": true,
+	"soda_folder_icons": true,
+	"sublimelinter": "load-save",
+	"theme": "Soda Dark.sublime-theme",
+	"vintage_start_in_command_mode": false
+}
