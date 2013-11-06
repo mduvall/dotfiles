@@ -51,9 +51,7 @@ set autoread
 set number
 set background=dark
 
-let g:badwolf_tabline = 2
-let g:badwolf_html_link_underline = 0
-colorscheme badwolf
+colorscheme molokai
 
 filetype plugin indent on
 filetype indent on
