@@ -15,9 +15,18 @@
 	[
 		80
 	],
+	"save_on_focus_lost": true,
+	"show_full_path": true,
+	"show_panel_on_build": false,
+	"show_tab_close_buttons": false,
+	"show_white_space": "all",
 	"soda_classic_tabs": true,
 	"soda_folder_icons": true,
-	"sublimelinter": "load-save",
+	"sublimelinter": true,
+	"tab_size": 2,
 	"theme": "Soda Dark.sublime-theme",
-	"vintage_start_in_command_mode": false
+	"scroll_speed": 1.0,
+	"tree_animation_enabled": false,
+	"animation_enabled": false,
+	"trailing_spaces_trim_on_save": true
 }
