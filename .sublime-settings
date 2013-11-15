@@ -28,5 +28,6 @@
 	"scroll_speed": 1.0,
 	"tree_animation_enabled": false,
 	"animation_enabled": false,
-	"trailing_spaces_trim_on_save": true
+	"trailing_spaces_trim_on_save": true,
+	"ensure_newline_at_eof_on_save": true
 }
