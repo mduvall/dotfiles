@@ -16,6 +16,9 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-markdown'
 Bundle 'bling/vim-airline'
 Bundle 'rking/ag.vim'
+Bundle 'mustache/vim-mustache-handlebars'
+Bundle 'groenewege/vim-less'
+Bundle 'fatih/vim-go'
 " }}}
 
 " Settings {{{
@@ -109,6 +112,8 @@ nnoremap N Nzzzv
 " Jump to end and beginning of line
 noremap H ^
 noremap L $
+
+nmap <leader>g :!go run %<CR>
 
 " }}}
 
