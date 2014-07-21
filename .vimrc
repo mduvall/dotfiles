@@ -1,24 +1,26 @@
-" Vundle ceremony {{{
-filetype off
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
-" }}}
 
 " Plugins {{{
 Bundle 'gmarik/vundle'
 Bundle 'kien/ctrlp.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/nerdcommenter'
-Bundle 'Lokaltog/vim-easymotion'
 Bundle 'scrooloose/syntastic'
+Bundle 'Lokaltog/vim-easymotion'
 Bundle 'godlygeek/tabular'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-markdown'
 Bundle 'bling/vim-airline'
 Bundle 'rking/ag.vim'
+Bundle 'fatih/vim-go'
+Bundle 'jordwalke/flatlandia'
 Bundle 'mustache/vim-mustache-handlebars'
 Bundle 'groenewege/vim-less'
-Bundle 'fatih/vim-go'
+Bundle 'guns/vim-clojure-static'
+Bundle 'tpope/vim-fireplace'
+Bundle 'tpope/vim-leiningen'
+Bundle 'tpope/vim-classpath'
 " }}}
 
 " Settings {{{
@@ -31,9 +33,9 @@ set showmatch                  " Show paren matching
 set incsearch                  " Show results while typing
 set hlsearch                   " Highlight matches, F1 this off
 set expandtab                  " Splat tabs into their spaces
-set tabstop=4                  " A tab is 4 spaces
-set softtabstop=4              " A soft tab is also 4 spaces
-set shiftwidth=4               " A > over is 4 spaces
+set tabstop=2                  " A tab is 4 spaces
+set softtabstop=2              " A soft tab is also 4 spaces
+set shiftwidth=2               " A > over is 4 spaces
 set backspace=indent,eol,start " Because we want to backspace like humans
 set mouse=a                    " Enable GUI mouse usage on xterm
 set visualbell                 " Please, bother me with notifications
@@ -49,14 +51,18 @@ set hidden                     " Push to bg, don't need to save
 set laststatus=2               " Show the status bar
 set autoread                   " Read in changed files on disk
 set number                     " Show me the line numbers please
-set shell=/bin/bash            " Use bash for vim always since fish is in term
+set shell=/bin/bash
+set exrc " Allow project .vimrc files
+set secure " Execute safe commands from those project files only
+let mapleader = ","
 " }}}
 
 " File type/syntax settings {{{
-colorscheme molokai
+colorscheme solarized
 
 " Let files be indented according to their file type
 filetype indent on
+filetype plugin indent on
 " Turn on syntax highlighting so vim looks cool
 syntax on
 " }}}
@@ -113,21 +119,27 @@ nnoremap N Nzzzv
 noremap H ^
 noremap L $
 
+" Run Go code, just the current buffer, wahoo!
 nmap <leader>g :!go run %<CR>
+
+" Run JS Code, just the current buffer, wahoo!
+nmap <leader>j :!node %<CR>
 
 " }}}
 
 " Plugin settings {{{
 let mapleader = ","
 let g:EasyMotion_leader_key = '<leader><leader>'
-let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts = 0
 let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
 let g:ctrlp_working_path=0
+let g:airline_left_sep = ''
+let g:airline_right_sep = ''
 " }}}
 
 " GUI settings {{{
 if has("gui_running")
-    set guifont=Inconsolata\ for\ Powerline:h16
+    set guifont=Source\ Code\ Pro:h13
     set guioptions-=T
     set guioptions+=LlRrb
     set guioptions-=LlRrb
@@ -136,13 +148,14 @@ endif
 " }}}
 
 " File specific hooks/settings {{{
-au BufWritePre *.go Fmt
+" au BufWritePre *.go Fmt
 au BufWinEnter * set foldlevel=999999
 au BufWritePre * :%s/\s\+$//e
 au FocusLost * :silent! wall
 au VimResized * :wincmd =
 au Filetype markdown setlocal wrap
+au Filetype markdown setlocal linebreak
+au Filetype markdown setlocal nolist
 " }}}
 
 " vim:foldmethod=marker:foldlevel=0
-
