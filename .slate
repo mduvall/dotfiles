@@ -1,0 +1,63 @@
+# Configuration options
+config defaultToCurrentScreen true
+config modalEscapeKey esc
+config nudgePercentOf screenSize
+config resizePercentOf screenSize
+config windowHintsShowIcons true
+config windowHintsIgnoreHiddenWindows false
+config windowHintsSpread true
+config windowHintsSpreadSearchWidth 200
+config windowHintsSpreadSearchHeight 200
+alias modal-key w,shift,cmd
+
+# Some apps
+alias app-browser 'Google Chrome'
+alias app-editor 'MacVim'
+alias app-xcode 'Xcode'
+alias app-music 'Spotify'
+alias app-terminal 'iTerm'
+alias app-mail 'Sparrow'
+alias app-evernote 'Evernote'
+
+# Easy helpers for long variable names...
+alias sox screenOriginX
+alias soy screenOriginY
+alias ssx screenSizeX
+alias ssy screenSizeY
+
+# Positioning aliases
+alias full move ${sox};${soy} ${ssx};${ssy}
+alias left-half move ${sox};${soy} ${ssx}/2+1;${ssy}
+alias right-half move ${sox}+${ssx}/2;${soy} ${ssx}/2;${ssy}
+alias top-half move ${sox};${soy} ${ssx};${ssy}/2
+alias bot-half move ${sox};${soy}+${ssy}/2 ${ssx};${ssy}/2
+alias top-left-corner move ${sox};${soy} ${ssx}/2;${ssy}/2
+alias top-right-corner move ${sox}+${ssx}/2;${soy} ${ssx}/2;${ssy}/2
+alias bot-left-corner move ${sox};${soy}+${ssy}/2 ${ssx}/2;${ssy}/2
+alias bot-right-corner move ${sox}+${ssx}/2;${soy}+${ssy}/2 ${ssx}/2;${ssy}/2
+
+# Focus windows in certain directions
+bind h:cmd,shift focus left
+bind l:cmd,shift focus right
+bind j:cmd,shift focus up
+bind k:cmd,shift focus down
+
+# Move windows to certain locations on the screen
+bind f:cmd,ctrl ${full}
+bind h:cmd,ctrl ${left-half}
+bind l:cmd,ctrl ${right-half}
+bind j:cmd,ctrl ${bot-half}
+bind k:cmd,ctrl ${top-half}
+bind u:cmd,ctrl ${top-left-corner}
+bind i:cmd,ctrl ${top-right-corner}
+bind n:cmd,ctrl ${bot-left-corner}
+bind m:cmd ${bot-right-corner}
+
+# Focus helpers
+bind b:e,cmd focus ${app-browser}
+bind e:e,cmd focus ${app-editor}
+bind m:e,cmd focus ${app-music}
+bind t:e,cmd focus ${app-terminal}
+bind x:e,cmd focus ${app-xcode}
+bind /:e,cmd hint 1234567890QWERTYUIOPASDFGHJKL
+# bind tab:cmd hint 1234567890QWERTYUIOPASDFGHJKL
