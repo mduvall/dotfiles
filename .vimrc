@@ -1,26 +1,46 @@
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
 " Plugins {{{
-Bundle 'gmarik/vundle'
-Bundle 'kien/ctrlp.vim'
-Bundle 'scrooloose/nerdtree'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'scrooloose/syntastic'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'godlygeek/tabular'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-markdown'
-Bundle 'bling/vim-airline'
-Bundle 'rking/ag.vim'
-Bundle 'fatih/vim-go'
-Bundle 'jordwalke/flatlandia'
-Bundle 'mustache/vim-mustache-handlebars'
-Bundle 'groenewege/vim-less'
-Bundle 'guns/vim-clojure-static'
-Bundle 'tpope/vim-fireplace'
-Bundle 'tpope/vim-leiningen'
-Bundle 'tpope/vim-classpath'
+Plugin 'gmarik/vundle'
+Plugin 'kien/ctrlp.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'scrooloose/syntastic'
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'godlygeek/tabular'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-markdown'
+Plugin 'bling/vim-airline'
+Plugin 'rking/ag.vim'
+Plugin 'fatih/vim-go'
+Plugin 'jordwalke/flatlandia'
+Plugin 'mustache/vim-mustache-handlebars'
+Plugin 'groenewege/vim-less'
+Plugin 'guns/vim-clojure-static'
+Plugin 'tpope/vim-fireplace'
+Plugin 'tpope/vim-leiningen'
+Plugin 'tpope/vim-classpath'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'wavded/vim-stylus'
+Plugin 'croaky/vim-colors-github'
+Plugin 'chriskempson/base16-vim'
+Plugin 'wting/rust.vim'
+Plugin 'pangloss/vim-javascript'
+Plugin 'Lokaltog/powerline'
+Plugin 'derekwyatt/vim-scala'
+Plugin 'AndrewRadev/vim-eco'
+Plugin 'nelstrom/vim-mac-classic-theme'
+Plugin 'JuliaLang/julia-vim'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'LaTeX-Box-Team/LaTeX-Box'
+Plugin 'vim-pandoc/vim-pandoc'
+Plugin 'vim-pandoc/vim-pandoc-syntax'
+Plugin 'tpope/vim-surround'
+Plugin 'SirVer/ultisnips'
+
+call vundle#end()
 " }}}
 
 " Settings {{{
@@ -39,7 +59,7 @@ set shiftwidth=2               " A > over is 4 spaces
 set backspace=indent,eol,start " Because we want to backspace like humans
 set mouse=a                    " Enable GUI mouse usage on xterm
 set visualbell                 " Please, bother me with notifications
-set wildignore+=*/coverage/*\,*/vendor/*',*/node_modules/** " Always ignore these directories
+set wildignore+=.git/*,*/coverage/*\,*/vendor/*',*/node_modules/** " Always ignore these directories
 set clipboard=unnamed          " Use clipboard register for all the things
 set nowrap                     " Don't wrap text
 set ttyfast                    " Make copy-pasting things not freeze vim
@@ -52,12 +72,17 @@ set laststatus=2               " Show the status bar
 set autoread                   " Read in changed files on disk
 set number                     " Show me the line numbers please
 set shell=/bin/bash
+set cursorline
 set exrc " Allow project .vimrc files
 set secure " Execute safe commands from those project files only
 let mapleader = ","
+let base16colorspace=256  " Access colors present in 256 colorspace
 " }}}
 
 " File type/syntax settings {{{
+set t_Co=256
+syntax on
+set background=light
 colorscheme solarized
 
 " Let files be indented according to their file type
@@ -107,6 +132,9 @@ nmap <leader>d :NERDTreeToggle<CR>
 " Show the buffers open and clear cache hotkeys
 nmap <leader>r :CtrlPBuffer<CR>
 nmap <leader>T :CtrlPClearCache<CR>:CtrlP<CR>
+nmap <leader>l :CtrlPLine<CR>
+nmap <leader><F9> :tabe<CR>
+
 
 " Hit * and stay on highlighted word
 nnoremap * *<c-o>
@@ -131,15 +159,32 @@ nmap <leader>j :!node %<CR>
 let mapleader = ","
 let g:EasyMotion_leader_key = '<leader><leader>'
 let g:airline_powerline_fonts = 0
-let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
-let g:ctrlp_working_path=0
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
+" let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme = 'base16'
+
+" let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
+let g:ctrlp_working_path=0
+let g:ctrlp_max_files = 100000
+"let g:ctrlp_user_command = {
+      "\ 'types': {
+      "\ 1: ['.git', 'cd %s && git ls-files . -co --exclude-standard'],
+      "\ 2: ['.hg', 'hg --cwd %s locate -I .'],
+      "\ },
+      "\ 'fallback': 'find %s -type f | head -' . g:ctrlp_max_files
+      "\ }
+let g:ctrlp_custom_ignore = '\v[\/](vendor|node_modules|target|dist)|(\.(swp|ico|git|svn))$'
+let g:UltiSnipsExpandTrigger="<C-j>"
+
 " }}}
+
+" Golang things
+let g:go_fmt_command = "goimports"
 
 " GUI settings {{{
 if has("gui_running")
-    set guifont=Source\ Code\ Pro:h13
+    set guifont=Source\ Code\ Pro:h14
     set guioptions-=T
     set guioptions+=LlRrb
     set guioptions-=LlRrb
@@ -156,6 +201,7 @@ au VimResized * :wincmd =
 au Filetype markdown setlocal wrap
 au Filetype markdown setlocal linebreak
 au Filetype markdown setlocal nolist
+au BufRead,BufNewFile *.page set filetype=pandoc
 " }}}
 
 " vim:foldmethod=marker:foldlevel=0
