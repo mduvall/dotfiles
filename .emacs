@@ -23,13 +23,12 @@
   (global-set-key (kbd "C-M-r") 'isearch-backward)
 
   (setq-default indent-tabs-mode nil)
-  (setq x-select-enable-clipboard t
-        x-select-enable-primary t
-        save-interprogram-paste-before-kill t
-        apropos-do-all t
-        mouse-yank-at-point t
-        save-place-file (concat user-emacs-directory "places")
-        backup-directory-alist `(("." . ,(concat user-emacs-directory
+  (setq x-select-enable-clipboard t x-select-enable-primary t
+        save-interprogram-paste-before-kill t apropos-do-all t
+        mouse-yank-at-point t save-place-file (concat
+        user-emacs-directory "places")
+        backup-directory-alist `(("." . ,(concat
+        user-emacs-directory
                                                  "backups")))))
 
 (provide 'better-defaults)
@@ -39,7 +38,7 @@
 (add-to-list 'load-path "~/.emacs.d")
 (require 'cl-lib)
 (setq inhibit-startup-message t)
-(define-key global-map (kbd "RET") 'newline-and-indent)
+;; (define-key global-map (kbd "RET") 'newline-and-indent)
 
 ;; Getting packages in order
 (require 'package)
@@ -102,6 +101,34 @@
 (smex-initialize)
 (global-set-key (kbd "M-x") 'smex)
 
+;; Ido is cool.
+(require 'flx-ido)
+(ido-mode 1)
+(ido-everywhere 1)
+(flx-ido-mode 1)
+(setq ido-enable-flex-matching t)
+(setq ido-use-faces nil)
+
+;; evil-mode
+(require 'evil-leader)
+(global-evil-leader-mode t)
+(evil-leader/set-leader ",")
+(evil-leader/set-key
+  "a" 'ag
+  "F" 'helm-projectile-find-file
+  "r" 'helm-recentf
+  "b" 'ido-switch-buffer
+  "p s" 'helm-projectile-switch-project
+  )
+
+(require 'evil)
+(evil-mode 1)
+
+; Let's remap <ESC> to jj here
+(require 'key-chord)
+(key-chord-mode 1)
+(key-chord-define evil-insert-state-map "jj" 'evil-normal-state)
+
 ;; Projectile setup
 (require 'projectile)
 ;; (require 'grizzl)
@@ -111,17 +138,9 @@
 (setq projectile-enable-caching t)
 ;; (setq projectile-completion-system 'grizzl)
 
-;; Ido is cool.
-(require 'flx-ido)
-(ido-mode 1)
-(ido-everywhere 1)
-(flx-ido-mode 1)
-(setq ido-enable-flex-matching t)
-(setq ido-use-faces nil)
-
 (add-to-list 'default-frame-alist
-             '(font . "Source Code Pro-14"))
-(electric-indent-mode 1)
+             '(font . "Input-14"))
+
 (when (memq window-system '(mac ns))
   (exec-path-from-shell-initialize))
 (setq ag-highlight-search t)
@@ -169,6 +188,15 @@
                                    (flycheck-set-checker-executable 'go-gofmt "/usr/local/go/bin/gofmt")
                                    (flycheck-select-checker 'go-gofmt))))
 ; (setq gofmt-show-errors nil)
+
+;; Markdown
+(autoload 'markdown-mode "markdown-mode"
+   "Major mode for editing Markdown files" t)
+(add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.page\\'" . markdown-mode)) ;; For gitit wiki pages
+(setq markdown-indent-on-enter nil)
 
 ;; Close the compilation window if there was no error at all.
 (setq compilation-exit-message-function
@@ -223,7 +251,6 @@
 (setq ring-bell-function 'ignore)
 
 (show-paren-mode 1)
-(smartparens-global-mode t)
 (add-to-list 'load-path "~/.emacs.d/smartparens-config")
 (require 'smartparens-config)
 
@@ -244,7 +271,7 @@
   (add-to-list 'ac-modes m))
 
 (add-to-list 'load-path "~/.emacs.d/tomorrow-theme")
-(require 'solarized-theme)
+(require 'tomorrow-night-theme)
 
 (require 'web-mode)
 (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
