@@ -59,6 +59,10 @@
                      smex
                      rainbow-mode
                      robe
+                     evil
+                     evil-leader
+                     key-chord
+                     markdown-mode
                      solarized-theme))
 (dolist (source '(("melpa" . "http://melpa.milkbox.net/packages/")
                   ("marmalade" . "http://marmalade-repo.org/packages/")))
@@ -119,11 +123,9 @@
   "r" 'helm-recentf
   "b" 'ido-switch-buffer
   "p s" 'helm-projectile-switch-project
-  )
-
+  "t" 'helm-imenu)
 (require 'evil)
 (evil-mode 1)
-
 ; Let's remap <ESC> to jj here
 (require 'key-chord)
 (key-chord-mode 1)
@@ -131,12 +133,42 @@
 
 ;; Projectile setup
 (require 'projectile)
-;; (require 'grizzl)
 (setq projectile-globally-ignored-directories
 	  (append projectile-globally-ignored-directories '(".git" ".asset-cache")))
 (projectile-global-mode)
 (setq projectile-enable-caching t)
-;; (setq projectile-completion-system 'grizzl)
+
+;; Projectile functions to add projects under a subdir and opening specified types of projects (home/work)
+(defun md/subfolder-projects (dir)
+  (--map (file-relative-name it dir)
+         (-filter (lambda (subdir)
+                    (--reduce-from (or acc (funcall it subdir)) nil
+                                   projectile-project-root-files-functions))
+                  (-filter #'file-directory-p (directory-files dir t "\\<")))))
+
+(defun md/-add-known-subfolder-projects (dir)
+  (-map #'projectile-add-known-project (--map (concat (file-name-as-directory dir) it) (md/subfolder-projects dir))))
+
+(defun md/add-known-subfolder-projects ()
+  (interactive)
+  (md/-add-known-subfolder-projects (ido-read-directory-name "Add projects under: ")))
+
+(defun md/open-subfolder-project (from-dir &optional arg)
+  (let ((project-dir (projectile-completing-read "Open project: "
+                                                 (md/subfolder-projects from-dir))))
+    (projectile-switch-project-by-name (expand-file-name project-dir from-dir) arg)))
+
+(defun md/open-work-project (&optional arg)
+  (interactive "P")
+  (md/open-subfolder-project "" arg))
+
+(defun md/open-home-project (&optional arg)
+  (interactive "P")
+  (md/open-subfolder-project "~/workspace" arg))
+
+(setq projectile-switch-project-action #'projectile-dired
+      projectile-remember-window-configs t
+      projectile-completion-system 'ido)
 
 (add-to-list 'default-frame-alist
              '(font . "Input-14"))
@@ -152,6 +184,11 @@
 (setq make-backup-files nil)
 (setq auto-save-default nil)
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
+
+;; Set bash on purpose because SHELL is fish
+(setq explicit-shell-file-name "/bin/bash")
+(setq shell-file-name "bash")
+(setenv "SHELL" shell-file-name)
 
 ;; Sorry.
 (setenv "PATH" (concat (getenv "PATH") ":/bin"))
@@ -308,7 +345,6 @@
 
 (global-set-key (kbd "M-n") 'scroll-up-half)
 (global-set-key (kbd "M-p") 'scroll-down-half)
-(global-set-key (kbd "C-t") 'ido-goto-symbol)
 (global-set-key (kbd "M-g") 'goto-line)
 (global-set-key (kbd "C-p") 'helm-projectile)
 (global-set-key [f5] 'revert-buffer)
